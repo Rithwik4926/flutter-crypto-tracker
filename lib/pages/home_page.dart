@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext _context, AsyncSnapshot _snapshot) {
         if (_snapshot.hasData) {
           Map _data = jsonDecode(_snapshot.data.toString());
-          num _usdPrice = _data["market_data"]["current_price"]["usd"];
+          num _inrPrice = _data["market_data"]["current_price"]["inr"];
           num _change24h = _data["market_data"]["price_change_percentage_24h"];
           String _imgURL = _data["image"]["large"];
           Map _exchangeRates = _data["market_data"]["current_price"];
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: _coinImageWidget(_imgURL),
               ),
-              _currentPriceWidget(_usdPrice),
+              _currentPriceWidget(_inrPrice),
               _percentageChangeWidget(_change24h),
               _descriptionCardWidget(_data["description"]["en"]),
             ],
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _currentPriceWidget(num _rate) {
     return Text(
-      "${_rate.toString()} USD",
+      "${_rate.toString()} INR",
       style: const TextStyle(
         color: Colors.white,
         fontSize: 30,
